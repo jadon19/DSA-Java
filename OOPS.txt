@@ -1,0 +1,304 @@
+
+
+1. FORMAL DEFINITION OF A CLASS
+-------------------------------
+A class is a user-defined reference type in Java that serves as a blueprint
+for creating objects, encapsulating data (fields) and behavior (methods).
+
+Key Points:
+• Defines structure and behavior of objects
+• Stored in method area when loaded by JVM
+• Supports encapsulation and abstraction
+
+Syntax:
+[access_modifier] class ClassName {
+    // fields
+    // constructors
+    // methods
+}
+
+----------------------------------------
+
+2. FORMAL DEFINITION OF AN OBJECT
+---------------------------------
+An object is a runtime instance of a class that represents a real-world entity
+and contains actual values for the properties defined in the class.
+
+Syntax:
+ClassName obj = new ClassName();
+
+Example:
+Student s = new Student();
+
+----------------------------------------
+
+3. CLASS STRUCTURE
+------------------
+A class may contain:
+
+• Fields (variables)
+• Methods
+• Constructors
+• Blocks (static/instance)
+• Nested classes
+
+Example:
+public class Car {
+    String model;   // field
+    int speed;
+
+    void drive() {  // method
+        System.out.println("Driving");
+    }
+}
+
+----------------------------------------
+
+4. ACCESS MODIFIERS FOR CLASSES
+-------------------------------
+
+Modifier      Accessibility
+--------------------------------
+public        Accessible from any package
+(default)     Accessible within same package
+
+Rules:
+• Only one public class per file
+• File name must match public class name
+
+Example:
+public class Demo {}  → Demo.java ✔
+class Demo {}         → any filename ✔
+
+----------------------------------------
+
+5. TYPES OF CLASSES (FORMAL)
+----------------------------
+
+1. Public Class
+   A class declared with the public modifier, accessible from all packages.
+
+2. Package-Private (Default) Class
+   A class with no modifier, accessible only within the same package.
+
+3. Abstract Class
+   A class declared with abstract keyword that cannot be instantiated and may
+   contain abstract methods.
+
+   abstract class Shape {
+       abstract void draw();
+   }
+
+4. Final Class
+   A class declared with final keyword that cannot be extended.
+
+   final class A {}
+
+5. Nested Class
+   A class declared within another class.
+
+----------------------------------------
+
+6. VARIABLES IN A CLASS (FIELDS)
+--------------------------------
+
+FORMAL DEFINITION:
+A field is a variable declared inside a class that represents the state of an object.
+
+Types:
+
+1. Instance Variable
+   • Belongs to object
+   • Each object has its own copy
+   • Stored in heap
+
+   class A { int x; }
+
+2. Static Variable (Class Variable)
+   • Belongs to class
+   • Shared by all objects
+   • Stored in method area
+
+   class A { static int count; }
+
+3. Local Variable
+   • Declared inside methods
+   • Exists only during method execution
+
+----------------------------------------
+
+7. METHODS IN A CLASS
+---------------------
+
+FORMAL DEFINITION:
+A method is a member function defined in a class that describes the behavior
+of an object and operates on its data.
+
+Syntax:
+[access_modifier] [non_access_modifier] returnType methodName(parameters) {
+    // body
+}
+
+Example:
+public int add(int a, int b) {
+    return a + b;
+}
+
+----------------------------------------
+
+8. STATIC vs NON-STATIC MEMBERS
+-------------------------------
+
+FORMAL DEFINITION:
+Static members belong to the class rather than instances, while non-static
+members belong to individual objects.
+
+STATIC:
+• One shared copy
+• Accessed via class name
+• Exists when class loads
+
+NON-STATIC:
+• Separate copy per object
+• Accessed via object reference
+
+Example:
+class Test {
+    static int a = 10;
+    int b = 20;
+}
+
+Access:
+Test.a        ✔
+new Test().b  ✔
+
+----------------------------------------
+
+9. MAIN METHOD (ENTRY POINT)
+----------------------------
+
+FORMAL DEFINITION:
+The main method is the entry point of a standalone Java application where
+program execution begins.
+
+Signature:
+public static void main(String[] args)
+
+Reasons:
+• public → JVM must access it
+• static → JVM calls without object
+• void → no return value
+
+----------------------------------------
+
+10. CONSTRUCTORS
+----------------
+
+FORMAL DEFINITION:
+A constructor is a special member of a class used to initialize objects at the
+time of creation.
+
+Rules:
+• Same name as class
+• No return type
+• Called automatically when object is created
+
+Example:
+class Student {
+    int id;
+
+    Student(int id) {
+        this.id = id;
+    }
+}
+
+Types:
+• Default constructor
+• Parameterized constructor
+• Constructor overloading
+
+----------------------------------------
+
+11. THIS KEYWORD
+----------------
+
+FORMAL DEFINITION:
+The 'this' keyword is a reference variable that refers to the current object.
+
+Uses:
+• Resolve variable shadowing
+• Call constructors
+• Pass current object as argument
+
+Example:
+this.id = id;
+
+----------------------------------------
+
+12. MEMORY REPRESENTATION
+-------------------------
+
+Method Area:
+• Class metadata
+• Static variables
+• Static methods
+
+Heap:
+• Objects
+• Instance variables
+
+Stack:
+• Method calls
+• Local variables
+
+----------------------------------------
+
+13. COMMON ERRORS
+-----------------
+
+1. Non-static method called from static context
+   → Create object OR make method static
+
+2. File name mismatch with public class
+
+3. Missing return type in method
+
+4. Trying to instantiate abstract class
+
+----------------------------------------
+
+14. BEST PRACTICES
+------------------
+
+✔ Use PascalCase for class names
+✔ Keep one public class per file
+✔ Use static only for shared data
+✔ Use private fields for encapsulation
+✔ Provide constructors for initialization
+
+----------------------------------------
+
+15. ROLE OF CLASSES IN OOP
+--------------------------
+
+Classes enable the four pillars of OOP:
+
+• Encapsulation → bundling data & methods
+• Inheritance → extending existing classes
+• Polymorphism → multiple forms of methods
+• Abstraction → hiding implementation details
+
+----------------------------------------
+
+16. INTERVIEW ONE-LINERS
+------------------------
+
+• A class is a blueprint for creating objects.
+• An object is a runtime instance of a class.
+• Static members belong to the class, not objects.
+• Constructors initialize objects.
+• Only one public class per file is allowed.
+• The main method is the entry point of a Java application.
+
+
+========================================
