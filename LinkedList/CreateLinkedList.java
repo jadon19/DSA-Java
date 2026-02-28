@@ -1,17 +1,4 @@
 package LinkedList;
-class Node{
-    int data;
-    Node next;
-    Node(int data, Node next){
-        this.data=data;
-        this.next=next;
-    }
-    Node(int data){
-        this.data=data;
-        next = null;
-    }
-}
-
 public class CreateLinkedList {
     public static void main(String[] args) {
         Node head = new Node(10);
@@ -126,6 +113,7 @@ public class CreateLinkedList {
             //count+=1;
         }
         //System.out.println("count : "+count);
+        System.out.println("");
     }
 }
 
