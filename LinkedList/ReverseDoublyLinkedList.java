@@ -1,18 +1,5 @@
 package LinkedList;
-class ListNode{
-    int data;
-    ListNode next;
-    ListNode prev;
-    ListNode(int data){
-        this.data = data;
-    }
-    ListNode(int data , ListNode prev, ListNode next){
-        this.data=data;
-        this.next=next;
-        this.prev=prev;
-    }
 
-}
 public class ReverseDoublyLinkedList {
     public static void main(String[] args) {
         ListNode head = new ListNode(5);
@@ -38,12 +25,11 @@ public class ReverseDoublyLinkedList {
         n5.prev = n4;
         System.out.print("Original Linked List: ");
 
-        //Method in class is not static, so we have to create an object of this class and then access it
-        ReverseDoublyLinkedList obj = new ReverseDoublyLinkedList();
-        obj.printDLL(head);
+        //Method in class is static, so we do not create an object of this class to access it
+        printDLL(head);
 
         head = reverseDoubly(head);
-        obj.printDLL(head);
+        printDLL(head);
         
     }
     static ListNode reverseDoubly(ListNode head){
@@ -58,7 +44,7 @@ public class ReverseDoublyLinkedList {
         }
         return head;
     }
-    public void printDLL(ListNode head) {
+    static void printDLL(ListNode head) {
 
         while (head != null) {
             System.out.print(head.data + " ");
