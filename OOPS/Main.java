@@ -2,17 +2,19 @@ package OOPS;
 class Subject{
     private int subId;
     private String name;
-    private int maxMarks;
+    private static int maxMarks = 100;
     private int marksObtained;
 
     public Subject(int subId, String name){
         this.subId = subId;
         this.name = name;
-        this.maxMarks = 100;
     }
 
     public void setMarks(int marks){
         this.marksObtained = marks;
+    }
+    public int getMaxMarks(){
+        return maxMarks;
     }
     @Override
     public String toString(){
