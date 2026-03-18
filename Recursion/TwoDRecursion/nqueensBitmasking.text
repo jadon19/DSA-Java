@@ -1,0 +1,112 @@
+N-Queens Optimised (Bitmask Approach)
+
+Concept:
+--------
+Place N queens on an N×N board such that:
+- No two queens share the same row
+- No two queens share the same column
+- No two queens share the same diagonal
+
+Approach:
+---------
+- Use backtracking row by row
+- Instead of checking the board, maintain constraints using bitmasks
+
+State Representation:
+---------------------
+cols  -> tracks occupied columns
+d1    -> tracks "\" diagonals (row - col)
+d2    -> tracks "/" diagonals (row + col)
+
+All are stored as integers (bitmasks)
+
+Key Idea:
+---------
+Each bit represents availability of a column
+
+For n = 4:
+0000 -> all free
+0100 -> column 2 occupied
+
+Available Positions:
+--------------------
+available = ((1 << n) - 1) & ~(cols | d1 | d2)
+
+- (1 << n) - 1 → mask with n bits set
+- ~(cols | d1 | d2) → free positions
+- AND gives valid columns for current row
+
+Picking a Position:
+-------------------
+bit = available & -available
+
+- Extracts the rightmost available position
+- Efficient O(1) operation
+
+Remove that bit:
+available -= bit
+
+Column Index:
+-------------
+col = number of trailing zeros in bit
+
+Placement:
+----------
+cols = cols | bit
+d1   = (d1 | bit) << 1
+d2   = (d2 | bit) >> 1
+
+Move to next row
+
+Backtracking:
+-------------
+No explicit undo needed
+New recursive call carries updated state
+
+Diagonal Logic:
+---------------
+d1 (row - col) shifts left → next row diagonal moves left
+d2 (row + col) shifts right → next row diagonal moves right
+
+Base Case:
+----------
+If row == n:
+- Valid solution found
+- Convert positions to board format
+
+Board Construction:
+-------------------
+Use pos[] where:
+pos[row] = column
+
+For each row:
+- Fill '.' everywhere
+- Place 'Q' at pos[row]
+
+Complexity:
+-----------
+Time: O(N!)
+Space: O(N) (recursion + pos array)
+
+Why Optimised:
+--------------
+- No scanning previous rows
+- No boolean arrays
+- O(1) safety checks
+- Uses bit operations (very fast)
+
+Key Tricks:
+-----------
+1. available & -available → isolate lowest set bit
+2. Bit shifting handles diagonals automatically
+3. No explicit backtracking cleanup required
+
+Usage:
+------
+- Competitive programming
+- High-performance constraints
+- Advanced interview scenarios
+
+One-line Summary:
+----------------
+Use bitmasks to track columns and diagonals, and generate valid positions using bit operations for optimal N-Queens backtracking.

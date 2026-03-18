@@ -1,0 +1,44 @@
+import java.util.*;
+
+class nQueensOptimised {
+    List<List<String>> res = new ArrayList<>();
+
+    public List<List<String>> solveNQueens(int n) {
+        solve(0, n, 0, 0, 0, new int[n]);
+        return res;
+    }
+
+    void solve(int row, int n, int cols, int d1, int d2, int[] pos) {
+        if (row == n) {
+            res.add(build(pos, n));
+            return;
+        }
+
+        int available = ((1 << n) - 1) & ~(cols | d1 | d2);
+
+        while (available != 0) {
+            int bit = available & -available;
+            available -= bit;
+
+            int col = Integer.numberOfTrailingZeros(bit);
+            pos[row] = col;
+
+            solve(row + 1, n,
+                  cols | bit,
+                  (d1 | bit) << 1,
+                  (d2 | bit) >> 1,
+                  pos);
+        }
+    }
+
+    List<String> build(int[] pos, int n) {
+        List<String> board = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            char[] row = new char[n];
+            Arrays.fill(row, '.');
+            row[pos[i]] = 'Q';
+            board.add(new String(row));
+        }
+        return board;
+    }
+}
