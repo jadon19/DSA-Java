@@ -12,5 +12,6 @@ class Solution {
 public class maxDepth {
     public static void main(String[] args) {
         // Solution.maxDepth();
+        // better solution with bfs (level tracking)
     }
 }
